@@ -1,0 +1,40 @@
+.bg-utama {
+  background-color: #263238;
+}
+
+.bg-terang {
+  background-color: #4f5b62;
+}
+
+.bg-gelap {
+  background-color: #000a12;
+}
+
+.layar {
+  margin-bottom: 50px;
+  padding: 10px;
+}
+
+.layar-tampil {
+  height: 200px;
+  width: 100%;
+  border-radius: 20px;
+  color: white;
+  text-align: center;
+  font-size: 30px;
+  line-height: 200px;
+  border: 2px solid #4f5b62;
+}
+
+.sub-container {
+  padding: 20px;
+}
+
+.tombol {
+  height: 50px;
+  width: 100%;
+  text-align: center;
+  line-height: 50px;
+  padding: 0px;
+  margin-bottom: 10px;
+}
