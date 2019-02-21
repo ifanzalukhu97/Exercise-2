@@ -9,33 +9,33 @@ let newOperand = "";
 let currentOperation;
 let screenValueDisplay = "";
 let total = 0;
-let operations = ["+", "-", "x", "÷"];
 
-// Get Sum
 equal.addEventListener("click", () => {
-  let operandArray = screenValue.textContent.split("");
-  let operandValue = 0;
-  let operator = "+";
+  // Get just operand from screenValue.textContent
+  let operandValueArray = screenValue.textContent.split(/\+|\-|\x|\÷/);
+  // Get just operator from screenValue.textContent
+  let operatorsArray = screenValue.textContent.match(/\+|\-|\x|\÷/g);
 
-  operandArray.forEach(function(n) {
-    if (operations.includes(n)) {
-      operator = n;
-    } else {
-      operandValue = n;
+  let indexValue = 1;
+  total = parseInt(operandValueArray[0]);
 
-      if (operator == "+") {
-        total += parseInt(operandValue);
-      } else if (operator == "-") {
-        total -= parseInt(operandValue);
-      } else if (operator == "x") {
-        total *= parseInt(operandValue);
-      } else if (operator == "÷") {
-        total /= parseInt(operandValue);
-      }
+  operatorsArray.forEach(function(operator) {
+    if (operator == "+") {
+      total += parseInt(operandValueArray[indexValue]);
+      indexValue++;
+    } else if (operator == "-") {
+      total -= parseInt(operandValueArray[indexValue]);
+      indexValue++;
+    } else if (operator == "x") {
+      total *= parseInt(operandValueArray[indexValue]);
+      indexValue++;
+    } else if (operator == "÷") {
+      total /= parseInt(operandValueArray[indexValue]);
+      indexValue++;
     }
   });
 
-  setScreenValue(`= ${total}`);
+  setScreenValue(`${total}`);
 });
 
 operands.forEach(operand => {
@@ -86,6 +86,7 @@ function resetScreen() {
   total = 0;
 }
 
+// Show result or operations in screenValue
 function setScreenValue(value) {
   screenValue.textContent = value;
 }
@@ -96,9 +97,11 @@ btnClear.addEventListener("click", () => {
   screenValue.textContent = "0";
 });
 
-// Delete button
+// Delete last operations
 btnDel.addEventListener("click", () => {
   let angkaScreen = screenValue.textContent;
   screenValueDisplay = angkaScreen.slice(0, angkaScreen.length - 1);
   setScreenValue(screenValueDisplay);
+  commondOperand = newOperand;
+  newOperand = 0;
 });
