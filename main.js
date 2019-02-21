@@ -9,6 +9,7 @@ let newOperand = "";
 let currentOperation;
 let screenValueDisplay = "";
 let total = 0;
+let commondOperand = "";
 
 equal.addEventListener("click", () => {
   // Get just operand from screenValue.textContent
@@ -41,13 +42,9 @@ equal.addEventListener("click", () => {
 operands.forEach(operand => {
   operand.addEventListener("click", () => {
     let operandValue = operand.textContent;
-    newOperand += parseInt(operandValue);
+    newOperand += operandValue;
 
-    if (screenValueDisplay.indexOf(currentOperation) == -1) {
-      screenValueDisplay = newOperand;
-    } else {
-      screenValueDisplay += operandValue;
-    }
+    screenValueDisplay += operandValue;
 
     setScreenValue(screenValueDisplay);
   });
@@ -80,8 +77,8 @@ function operationMultiplication() {
 // ============ Arithmetic Function End ===========
 
 function resetScreen() {
-  commondOperand = 0;
-  newOperand = 0;
+  commondOperand = "";
+  newOperand = "";
   screenValueDisplay = "";
   total = 0;
 }
@@ -103,5 +100,5 @@ btnDel.addEventListener("click", () => {
   screenValueDisplay = angkaScreen.slice(0, angkaScreen.length - 1);
   setScreenValue(screenValueDisplay);
   commondOperand = newOperand;
-  newOperand = 0;
+  newOperand = "";
 });
